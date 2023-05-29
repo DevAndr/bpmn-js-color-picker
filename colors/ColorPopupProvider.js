@@ -5,27 +5,39 @@ import {
 const COLORS = [ {
   label: 'Default',
   fill: undefined,
-  stroke: undefined
+  stroke: undefined,
+  color: '#000',
+  'border-color': 'red'
 }, {
   label: 'Blue',
   fill: '#BBDEFB',
-  stroke: '#0D4372'
+  stroke: '#0D4372',
+  text: '#000',
+  'border-color': 'red'
 }, {
   label: 'Orange',
   fill: '#FFE0B2',
-  stroke: '#6B3C00'
+  stroke: '#6B3C00',
+  color: '#000',
+  'border-color': 'red'
 }, {
   label: 'Green',
   fill: '#C8E6C9',
-  stroke: '#205022'
+  stroke: '#205022',
+  color: '#000',
+  'border-color': 'red'
 }, {
   label: 'Red',
   fill: '#FFCDD2',
-  stroke: '#831311'
+  stroke: '#831311',
+  color: '#000',
+  'border-color': 'red'
 }, {
   label: 'Purple',
   fill: '#E1BEE7',
-  stroke: '#5B176D'
+  stroke: '#5B176D',
+  color: '#000',
+  'border-color': 'red'
 } ];
 
 
@@ -37,6 +49,7 @@ export default function ColorPopupProvider(config, bpmnRendererConfig, popupMenu
   this._colors = config && config.colors || COLORS;
   this._defaultFillColor = bpmnRendererConfig && bpmnRendererConfig.defaultFillColor || 'white';
   this._defaultStrokeColor = bpmnRendererConfig && bpmnRendererConfig.defaultStrokeColor || 'rgb(34, 36, 42)';
+  this._defaultTextColor = bpmnRendererConfig && bpmnRendererConfig.defaultTextColor || 'black';
 
   this._popupMenu.registerProvider('color-picker', this);
 }
@@ -56,7 +69,7 @@ ColorPopupProvider.prototype.getEntries = function(elements) {
 
   var colorIcon = domify(`
     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" height="100%">
-      <rect rx="2" x="1" y="1" width="22" height="22" fill="var(--fill-color)" stroke="var(--stroke-color)" style="stroke-width:2"></rect>
+      <rect rx="2" x="1" y="1" width="22" height="22" fill="var(--fill-color)" color="var(--text-color)" stroke="var(--stroke-color)" style="stroke-width:2"></rect>
     </svg>
   `);
 
@@ -64,6 +77,9 @@ ColorPopupProvider.prototype.getEntries = function(elements) {
 
     colorIcon.style.setProperty('--fill-color', color.fill || self._defaultFillColor);
     colorIcon.style.setProperty('--stroke-color', color.stroke || self._defaultStrokeColor);
+    colorIcon.style.setProperty('--text-color', color.text || self._defaultTextColor);
+    colorIcon.style.setProperty('--color', color.text || self._defaultTextColor);
+    colorIcon.style.setProperty('color', color.text || self._defaultTextColor);
 
     return {
       title: self._translate(color.label),
@@ -78,7 +94,7 @@ ColorPopupProvider.prototype.getEntries = function(elements) {
 
 
 function createAction(modeling, element, color) {
-  return function() {
+  return function() { 
     modeling.setColor(element, color);
   };
 }

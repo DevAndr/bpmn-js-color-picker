@@ -8,3 +8,7 @@
   display: grid;
   grid: auto-flow / 1fr 1fr 1fr;
 }
+
+.djs-label {
+  fill: #000 !important;
+}

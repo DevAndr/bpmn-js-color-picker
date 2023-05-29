@@ -1,7 +1,7 @@
 {
-  "name": "bpmn-js-color-picker",
-  "version": "0.5.0",
-  "description": "A color picker for bpmn-js",
+  "name": "bpmn-js-color-picker-bt",
+  "version": "0.5.1",
+  "description": "A color picker for bpmn-js. Set color text a black",
   "scripts": {
     "dev": "npm start",
     "all": "run-s lint test",
@@ -9,15 +9,15 @@
     "lint": "eslint .",
     "test": "echo 'no tests ;-)'"
   },
-  "repository": "https://github.com/bpmn-io/bpmn-js-color-picker.git",
+  "repository": "https://github.com/DevAndr/bpmn-js-color-picker.git",
   "keywords": [
     "bpmn-js-example",
     "bpmn-in-color",
     "bpmn"
   ],
   "author": {
-    "name": "Vladimirs Katusenoks",
-    "url": "https://github.com/vkatushenok"
+    "name": "Nosenko Ilya",
+    "url": "https://github.com/DevAndr"
   },
   "license": "MIT",
   "devDependencies": {
