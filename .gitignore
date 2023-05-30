@@ -1,2 +1,5 @@
 node_modules/
 public/
+/.idea
+/yarn.lock
+/package-lock.json
