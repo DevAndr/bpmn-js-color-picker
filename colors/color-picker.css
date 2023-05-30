@@ -1,6 +1,7 @@
 /* COLOR PICKER */
 
 .djs-popup.color-picker .entry {
+    min-width: 100;
     margin: 0;
 }
 
