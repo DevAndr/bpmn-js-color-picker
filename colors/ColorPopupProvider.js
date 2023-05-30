@@ -141,7 +141,7 @@ ColorPopupProvider.prototype.addPicker = function(container) {
 </svg>`;
 
   let drag = '<img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABoAAAAaCAYAAACpSkzOAAAABmJLR0QA/wD/AP+gvaeTAAABEUlEQVRIieXWMU4DMRCF4Y9AAkq4EwhRUiBuAzSIC9BQQwPZSCBREAoaUDgXSSg2RrDyLnHirXjSa+zx/PKM12vStIsJHtBLXLu0+vjAfOEndHNDNheJ5xXfYSMn6CoCCT7PBTnCrAE0xWEO0H0DJHj4V5LU+s5XXd9JBK2sGOgYozVyDnHQFLClPF2h8TFVe1MXM8WlSGn7eF4ySUrMI3bCxABvkSS5/Bpg7y1CgkedWB1b0IyydJMWdzPGdiAO8FIJiCn1MNyK3PBdXGcCfeK0Zv5bJyjWAA2xXx38H3ddVYX6UoXxulInaU/Z3NZ/fHDWALrIBaFs+k0EUmihz12/X0JjLb7tesrvpPDjWllGX3IcvacjOopwAAAAAElFTkSuQmCC"/>';
-  let closeIcon = `<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-x-circle" viewBox="0 0 16 16">
+  let closeIcon = `<svg id="btn_close_picker" xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-x-circle" viewBox="0 0 16 16">
   <path d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14zm0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16z"/>
   <path d="M4.646 4.646a.5.5 0 0 1 .708 0L8 7.293l2.646-2.647a.5.5 0 0 1 .708.708L8.707 8l2.647 2.646a.5.5 0 0 1-.708.708L8 8.707l-2.646 2.647a.5.5 0 0 1-.708-.708L7.293 8 4.646 5.354a.5.5 0 0 1 0-.708z"/>
 </svg>`;
@@ -309,7 +309,11 @@ function dragElement(elmnt) {
 
 function setButtons(pickr, self) {
   document.getElementById('btn_pickrPickColor').onclick = pickColor;
+  document.getElementById('btn_close_picker').onclick = close;
 
+  function close(e) {
+    self.toggle(self._canvas);
+  }
   function pickColor(e) {
     console.log('btn_pickrPickColor', e.target);
 
