@@ -631,6 +631,15 @@ a {
     font-weight: 600;
 }
 
+.djs-popup.color-picker .entry {
+    margin: 0;
+    cursor: pointer;
+}
+
+.djs-context-pad .entry:hover {
+    cursor: pointer;
+}
+
 :root {
     --color-btn-bg: #787878;
     --color-hover-btn: #6b6b6b;

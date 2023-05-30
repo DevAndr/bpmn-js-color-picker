@@ -1,6 +1,6 @@
 {
   "name": "bpmn-js-color-picker-bt",
-  "version": "0.5.6",
+  "version": "0.5.7",
   "description": "A color picker for bpmn-js. Set color text a black",
   "scripts": {
     "dev": "npm start",

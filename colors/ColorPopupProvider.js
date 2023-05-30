@@ -72,6 +72,8 @@ export default function ColorPopupProvider(config, bpmnRendererConfig, popupMenu
   this._eventBus.on('selection.changed', function(e) {
     self.selectedElement = e.newSelection[0];
     self.selectedElements = e.newSelection;
+
+    setActivePicker(self);
   });
 
   this._popupMenu.registerProvider('color-picker', this);
@@ -136,7 +138,7 @@ ColorPopupProvider.prototype.addPicker = function(container) {
   let self = this;
   let pickerColor = '#FF0000';
 
-  let pipette = `<svg id="btn_pickrPickColor" xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-eyedropper" viewBox="0 0 16 16">
+  let pipette = `<svg  id="btn_pickrPickColor" xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-eyedropper" viewBox="0 0 16 16">
   <path d="M13.354.646a1.207 1.207 0 0 0-1.708 0L8.5 3.793l-.646-.647a.5.5 0 1 0-.708.708L8.293 5l-7.147 7.146A.5.5 0 0 0 1 12.5v1.793l-.854.853a.5.5 0 1 0 .708.707L1.707 15H3.5a.5.5 0 0 0 .354-.146L11 7.707l1.146 1.147a.5.5 0 0 0 .708-.708l-.647-.646 3.147-3.146a1.207 1.207 0 0 0 0-1.708l-2-2zM2 12.707l7-7L10.293 7l-7 7H2v-1.293z"/>
 </svg>`;
 
@@ -223,7 +225,6 @@ ColorPopupProvider.prototype.addPicker = function(container) {
     }
   }).on('changestop', (source, instance) => {
     let color = instance._color;
-    console.log('Event: "changestop"', source, self.selectedElement, self, this, color.toHEXA().toString());
 
     if (self.selectedElements != null) {
       let strokeString = '#000000FF';
@@ -314,27 +315,32 @@ function setButtons(pickr, self) {
   function close(e) {
     self.toggle(self._canvas);
   }
+
   function pickColor(e) {
-    console.log('btn_pickrPickColor', e.target);
-
-    e.target.setAttribute('class', 'active-btn');
-
     let colorFill = ColorPopupProvider.prototype._getColorFill(self.selectedElement);
     self.colorFill = colorFill != null ? colorFill : 'white';
     if (pickr != null) {
-      if (!self.mode_pickrStroke) pickr.setColor(self.colorFill, true);
+      pickr.setColor(self.colorFill, true);
     }
 
     let colorStroke = ColorPopupProvider.prototype._getColorStroke(self.selectedElement);
     self.colorStroke = colorStroke != null ? colorStroke : 'black';
     if (pickr != null) {
-      if (self.mode_pickrStroke) {
-        pickr.setColor(self.colorStroke, true);
-        e.target.removeAttribute('class');
-      }
+      pickr.setColor(self.colorStroke, true);
     }
 
     return false;
+  }
+}
+
+function setActivePicker(self) {
+  let picker = document.getElementById('btn_pickrPickColor');
+
+  if (picker) {
+    if (self.selectedElements && self.selectedElements.length) {
+      if (!picker.hasAttribute('class'))
+        picker.setAttribute('class', 'active-btn');
+    } else  picker.removeAttribute('class');
   }
 }
 
