@@ -2,20 +2,51 @@
 <html>
 
 <head>
-  <title>Bpmn-js In Color</title>
-  <link rel="stylesheet" href="vendor/bpmn-js/dist/assets/diagram-js.css" />
-  <link rel="stylesheet" href="vendor/bpmn-js/dist/assets/bpmn-js.css" />
-  <link rel="stylesheet" href="vendor/bpmn-js/dist/assets/bpmn-font/css/bpmn-embedded.css" />
-  <link rel="stylesheet" href="vendor/bpmn-js-color-picker/color-picker.css" />
-  <link rel="stylesheet" href="style.css" />
+    <title>Bpmn-js In Color</title>
+    <link rel="stylesheet" href="vendor/bpmn-js/dist/assets/diagram-js.css"/>
+    <link rel="stylesheet" href="vendor/bpmn-js/dist/assets/bpmn-js.css"/>
+    <link rel="stylesheet" href="vendor/bpmn-js/dist/assets/bpmn-font/css/bpmn-embedded.css"/>
+    <link rel="stylesheet" href="vendor/bpmn-js-color-picker/color-picker.css"/>
+    <link href="https://unpkg.com/filepond/dist/filepond.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css">
+    <link rel="stylesheet" href="style.css"/>
 </head>
 
 <body>
-  <div class="canvas" id="canvas"></div>
-
-  <button class="export" id="export-to-console">export to console</button>
-
-  <script src="app.js"></script>
+<div class="modeler">
+    <div class="message intro">
+        <div class="note">
+            Drop BPMN diagram from your desktop or <a id="js-create-diagram" href>create a new diagram</a> to get
+            started.
+        </div>
+    </div>
+    <div class="canvas" id="canvas"></div>
+    <div id="properties" class="properties">
+        <form class="form-open-file" action="" method="post" enctype="text/plain">
+            <label>Файл BPMN:</label>
+            <input type="file" class="open" id="open-file" accept=".bpmn"/>
+        </form>
+        <button id="export-to-svg">Export to SVG</button>
+    </div>
+    <div class="footer">
+        <ul class="buttons">
+            <li>
+                <a class="btn" id="js-download-diagram" title="download BPMN diagram">
+                    <i class="bi bi-file-earmark-code"></i>
+                    BPMN diagram
+                </a>
+            </li>
+            <li>
+                <a class="btn" id="js-download-svg" title="download as SVG image">
+                    <i class="bi bi-filetype-svg"></i>
+                    SVG image
+                </a>
+            </li>
+        </ul>
+        <div class="errors"></div>
+    </div>
+</div>
+<script src="app.js"></script>
 </body>
 
 </html>
